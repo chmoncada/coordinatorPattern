@@ -36,7 +36,7 @@ open class Coordinator<CoordinationResult> {
 	// MARK: - Helpers
 
 	private let identifier = UUID()
-	private var children = [UUID: Any]()
+	private var children = [UUID: AnyObject]()
 
 	private var cleanupFromParentBlock: (() -> Void)?
 
