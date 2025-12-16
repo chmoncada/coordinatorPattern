@@ -1,15 +1,19 @@
 import SwiftUI
+import UIKit
 
-final class MainCoordinator: Coordinator<Void> {
-
+final class MainCoordinator: Coordinator {
+	typealias CoordinationResult = Void
+	
+	var childDelegate: CoordinatorChildDelegate?
+	var onFinish: ((Void) -> Void)?
+	
 	private let navigationController: UINavigationController
 
 	init(navigationController: UINavigationController) {
 		self.navigationController = navigationController
 	}
 
-	override func start() {
-
+	func start() {
 		let handleOutput: (MainViewModelOutput) -> Void = { [weak self] output in
 			switch output {
 			case .showCoordinatorOne: self?.startSceneOne()

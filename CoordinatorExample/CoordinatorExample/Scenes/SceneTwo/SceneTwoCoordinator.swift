@@ -1,14 +1,19 @@
 import SwiftUI
+import UIKit
 
-final class SceneTwoCoordinator: Coordinator<String?> {
-
+final class SceneTwoCoordinator: Coordinator {
+	typealias CoordinationResult = String?
+	
+	var childDelegate: CoordinatorChildDelegate?
+	var onFinish: ((String?) -> Void)?
+	
 	private let navigationController: UINavigationController
 
 	init(navigationController: UINavigationController) {
 		self.navigationController = navigationController
 	}
 
-	override func start() {
+	func start() {
 		let handleOutput: (SceneTwoViewModelOutput) -> Void = { [weak self] output in
 			switch output {
 			case .dismiss:
