@@ -6,8 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		56D6226F2EF54C900077E6A0 /* FoundationUtils in Frameworks */ = {isa = PBXBuildFile; productRef = 56D6226E2EF54C900077E6A0 /* FoundationUtils */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		5613174D2ED3091900BE3A75 /* CoordinatorExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoordinatorExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		56D6226C2EF54ACE0077E6A0 /* FoundationUtils */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = FoundationUtils; path = ../FoundationUtils; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -36,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56D6226F2EF54C900077E6A0 /* FoundationUtils in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,6 +51,7 @@
 		561317442ED3091900BE3A75 = {
 			isa = PBXGroup;
 			children = (
+				56D6226C2EF54ACE0077E6A0 /* FoundationUtils */,
 				5613174F2ED3091900BE3A75 /* CoordinatorExample */,
 				5613174E2ED3091900BE3A75 /* Products */,
 			);
@@ -78,6 +85,7 @@
 			);
 			name = CoordinatorExample;
 			packageProductDependencies = (
+				56D6226E2EF54C900077E6A0 /* FoundationUtils */,
 			);
 			productName = CoordinatorExample;
 			productReference = 5613174D2ED3091900BE3A75 /* CoordinatorExample.app */;
@@ -107,6 +115,9 @@
 			);
 			mainGroup = 561317442ED3091900BE3A75;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				56D6226D2EF54C900077E6A0 /* XCLocalSwiftPackageReference "../FoundationUtils" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 5613174E2ED3091900BE3A75 /* Products */;
 			projectDirPath = "";
@@ -343,6 +354,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		56D6226D2EF54C900077E6A0 /* XCLocalSwiftPackageReference "../FoundationUtils" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../FoundationUtils;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		56D6226E2EF54C900077E6A0 /* FoundationUtils */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FoundationUtils;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 561317452ED3091900BE3A75 /* Project object */;
 }

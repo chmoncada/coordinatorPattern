@@ -1,11 +1,13 @@
 import SwiftUI
 import UIKit
+import FoundationUtils
 
+@MainActor
 final class MainCoordinator: Coordinator {
 	typealias CoordinationResult = Void
 	
 	var childDelegate: CoordinatorChildDelegate?
-	var onFinish: ((Void) -> Void)?
+	var onFinish: ((CoordinationResult) -> Void)?
 	
 	private let navigationController: UINavigationController
 

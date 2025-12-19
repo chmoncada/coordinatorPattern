@@ -1,6 +1,8 @@
 import SwiftUI
 import UIKit
+import FoundationUtils
 
+@MainActor
 final class SceneTwoCoordinator: Coordinator {
 	typealias CoordinationResult = String?
 	
