@@ -5,7 +5,7 @@ import Foundation
 public protocol CoordinatorChildDelegate: AnyObject {
 	/// The coordinator did add a child coordinator.
 	func coordinatorDidAdd<T, U>(_ coordinator: any Coordinator<T>, child: any Coordinator<U>)
-	
+
 	/// The coordinator did remove a child coordinator
 	func coordinatorDidRemove<T, U>(_ coordinator: any Coordinator<T>, child: any Coordinator<U>)
 }

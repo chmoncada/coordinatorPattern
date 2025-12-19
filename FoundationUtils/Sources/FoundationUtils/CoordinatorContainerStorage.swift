@@ -3,24 +3,27 @@ import Foundation
 // MARK: - Container Storage (Swift pure implementation)
 @MainActor
 final class CoordinatorContainerStorage {
-	/// Weak-keyed map so that when a coordinator is deallocated,
-	/// its entry (and therefore its `CoordinatorContainer`) are automatically
-	/// removed and released.
-	private static let containers = NSMapTable<AnyObject, CoordinatorContainer>.weakToStrongObjects()
+	/// Storage for per-instance coordinator containers keyed by object identity.
+	/// Lifecycle is controlled explicitly via `finish` / `removeContainer(for:)`.
+	private static var containers: [ObjectIdentifier: CoordinatorContainer] = [:]
 	
 	static func getOrCreateContainer(for coordinator: AnyObject) -> CoordinatorContainer {
-		if let existing = containers.object(forKey: coordinator) {
+		let id = ObjectIdentifier(coordinator)
+		
+		if let existing = containers[id] {
 			return existing
 		}
 		
 		let container = CoordinatorContainer()
-		containers.setObject(container, forKey: coordinator)
+		containers[id] = container
 		return container
 	}
 	
 	static func removeContainer(for coordinator: AnyObject) {
-		containers.removeObject(forKey: coordinator)
+		let id = ObjectIdentifier(coordinator)
+		containers[id] = nil
 	}
 }
+
 
 
