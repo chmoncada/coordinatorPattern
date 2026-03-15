@@ -36,15 +36,19 @@ final class MainCoordinator: Coordinator {
 	}
 
 	private func startSceneTwo() {
-		let coordinator = SceneTwoCoordinator(navigationController: self.navigationController)
-		coordinator.onFinish = { selection in
-			switch selection {
-			case .none: print("User did not select anything")
-			case let .some(text): print("User select: \(text)")
+		let flowCoordinator = SceneTwoFlowCoordinator()
+		let rootView = flowCoordinator.start { [weak self] result in
+			guard let self else { return }
+			self.navigationController.popViewController(animated: true)
+
+			switch result {
+			case .dismissed:
+				print("User did not select anything")
+			case let .selection(text):
+				print("User select: \(text)")
 			}
 		}
-
-		addChild(coordinator: coordinator)
-		coordinator.start()
+		let viewController = UIHostingController(rootView: rootView)
+		self.navigationController.pushViewController(viewController, animated: true)
 	}
 }
