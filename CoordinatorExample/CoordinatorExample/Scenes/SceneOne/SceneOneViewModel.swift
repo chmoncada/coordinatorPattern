@@ -2,8 +2,12 @@ enum SceneOneViewModelEvent {
 	case dismiss
 }
 
+enum SceneOneNavigationIntent: Equatable {
+	case dismiss
+}
+
 enum SceneOneViewModelOutput {
-	case navigation(SceneFlowIntent)
+	case navigation(SceneOneNavigationIntent)
 }
 
 final class SceneOneViewModel {

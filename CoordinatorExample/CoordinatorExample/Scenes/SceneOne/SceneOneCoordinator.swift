@@ -23,8 +23,6 @@ final class SceneOneCoordinator: Coordinator {
 				case .dismiss:
 					self?.navigationController.popViewController(animated: true)
 					self?.finish(())
-				case .select(_):
-					break
 				}
 			}
 		}

@@ -16,21 +16,16 @@ final class SceneTwoCoordinator: Coordinator {
 	}
 
 	func start() {
-		let handleOutput: (SceneTwoViewModelOutput) -> Void = { [weak self] output in
-			switch output {
-			case let .navigation(intent):
-				switch intent {
-				case .dismiss:
-					self?.navigationController.popViewController(animated: true)
-					self?.finish(nil)
-				case let .select(text):
-					self?.navigationController.popViewController(animated: true)
-					self?.finish(text)
-				}
+		let view = SceneTwoFlowContainerView { [weak self] result in
+			switch result {
+			case .dismissed:
+				self?.navigationController.popViewController(animated: true)
+				self?.finish(nil)
+			case let .selection(value):
+				self?.navigationController.popViewController(animated: true)
+				self?.finish(value)
 			}
 		}
-		let viewModel = SceneTwoViewModel(handleOutput: handleOutput)
-		let view = SceneTwoView(viewModel: viewModel)
 		let viewController = UIHostingController(rootView: view)
 
 		self.navigationController.pushViewController(viewController, animated: true)

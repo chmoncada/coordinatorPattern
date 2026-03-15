@@ -4,7 +4,7 @@ enum SceneTwoViewModelEvent {
 }
 
 enum SceneTwoViewModelOutput {
-	case navigation(SceneFlowIntent)
+	case navigation(SceneTwoFlowIntent)
 }
 
 final class SceneTwoViewModel {

@@ -64,4 +64,58 @@ struct CoordinatorExampleTests {
 		}
 	}
 
+	@Test
+	@MainActor
+	func sceneFlowRouterPushAppendsRouteToPath() {
+		let router = SceneTwoFlowRouter { _ in }
+
+		router.push(.sceneTwoDetails)
+
+		#expect(router.path == [.sceneTwoDetails])
+	}
+
+	@Test
+	@MainActor
+	func sceneFlowRouterDismissPopsBeforeFinishing() {
+		var finishedResults: [SceneTwoFlowResult] = []
+		let router = SceneTwoFlowRouter { result in
+			finishedResults.append(result)
+		}
+		router.push(.sceneTwoDetails)
+
+		router.handle(.dismiss)
+
+		#expect(router.path.isEmpty)
+		#expect(finishedResults.isEmpty)
+	}
+
+	@Test
+	@MainActor
+	func sceneFlowRouterDismissOnRootFinishesOnceAsDismissed() {
+		var finishedResults: [SceneTwoFlowResult] = []
+		let router = SceneTwoFlowRouter { result in
+			finishedResults.append(result)
+		}
+
+		router.handle(.dismiss)
+		router.handle(.dismiss)
+
+		#expect(finishedResults == [.dismissed])
+	}
+
+	@Test
+	@MainActor
+	func sceneFlowRouterSelectFinishesOnceWithSelection() {
+		let expectedValue = "Two"
+		var finishedResults: [SceneTwoFlowResult] = []
+		let router = SceneTwoFlowRouter { result in
+			finishedResults.append(result)
+		}
+
+		router.handle(.select(expectedValue))
+		router.handle(.dismiss)
+
+		#expect(finishedResults == [.selection(expectedValue)])
+	}
+
 }
