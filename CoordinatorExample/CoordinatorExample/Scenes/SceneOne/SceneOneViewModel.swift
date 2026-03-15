@@ -3,7 +3,7 @@ enum SceneOneViewModelEvent {
 }
 
 enum SceneOneViewModelOutput {
-	case dismiss
+	case navigation(SceneFlowIntent)
 }
 
 final class SceneOneViewModel {
@@ -16,7 +16,7 @@ final class SceneOneViewModel {
 	func notify(_ event: SceneOneViewModelEvent) {
 		switch event {
 		case .dismiss:
-			handleOutput(.dismiss)
+			handleOutput(.navigation(.dismiss))
 		}
 	}
 }

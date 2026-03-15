@@ -18,9 +18,14 @@ final class SceneOneCoordinator: Coordinator {
 	func start() {
 		let handleOutput: (SceneOneViewModelOutput) -> Void = { [weak self] output in
 			switch output {
-			case .dismiss:
-				self?.navigationController.popViewController(animated: true)
-				self?.finish(())
+			case let .navigation(intent):
+				switch intent {
+				case .dismiss:
+					self?.navigationController.popViewController(animated: true)
+					self?.finish(())
+				case .select(_):
+					break
+				}
 			}
 		}
 		let viewModel = SceneOneViewModel(handleOutput: handleOutput)

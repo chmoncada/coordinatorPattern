@@ -4,8 +4,7 @@ enum SceneTwoViewModelEvent {
 }
 
 enum SceneTwoViewModelOutput {
-	case dismiss
-	case selection(String)
+	case navigation(SceneFlowIntent)
 }
 
 final class SceneTwoViewModel {
@@ -18,9 +17,9 @@ final class SceneTwoViewModel {
 	func notify(_ event: SceneTwoViewModelEvent) {
 		switch event {
 		case .dismiss:
-			handleOutput(.dismiss)
+			handleOutput(.navigation(.dismiss))
 		case let .select(text):
-			handleOutput(.selection(text))
+			handleOutput(.navigation(.select(text)))
 		}
 	}
 }
