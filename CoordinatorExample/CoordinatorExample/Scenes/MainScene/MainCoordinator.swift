@@ -36,19 +36,33 @@ final class MainCoordinator: Coordinator {
 	}
 
 	private func startSceneTwo() {
-		let flowCoordinator = SceneTwoFlowCoordinator()
-		let rootView = flowCoordinator.start { [weak self] result in
+		Task { [weak self] in
 			guard let self else { return }
-			self.navigationController.popViewController(animated: true)
+			let flowCoordinator = SceneTwoFlowCoordinator()
 
-			switch result {
-			case .dismissed:
-				print("User did not select anything")
-			case let .selection(text):
-				print("User select: \(text)")
+			do {
+				let decision = try await flowCoordinator.prepareStart()
+				switch decision {
+				case .present:
+					let rootView = flowCoordinator.makeRoot { [weak self] result in
+						guard let self else { return }
+						self.navigationController.popViewController(animated: true)
+
+						switch result {
+						case .dismissed:
+							print("User did not select anything")
+						case let .selection(text):
+							print("User select: \(text)")
+						}
+					}
+					let viewController = UIHostingController(rootView: rootView)
+					self.navigationController.pushViewController(viewController, animated: true)
+				case .skip:
+					break
+				}
+			} catch {
+				print("Failed to prepare SceneTwo flow: \(error)")
 			}
 		}
-		let viewController = UIHostingController(rootView: rootView)
-		self.navigationController.pushViewController(viewController, animated: true)
 	}
 }
