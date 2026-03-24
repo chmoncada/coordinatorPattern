@@ -1,0 +1,3 @@
+interface:
+  display_name: "Swift 6 Migration"
+  short_description: "Phased Swift 6 migration with strict checks"
